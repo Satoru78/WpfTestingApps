@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TestingBaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDComputerType" Type="int" Nullable="false" />
+          <Property Name="IDCooler" Type="int" Nullable="false" />
+          <Property Name="IDMotherboard" Type="int" Nullable="false" />
+          <Property Name="IDStorageDevice" Type="int" Nullable="false" />
+          <Property Name="IDPowerUnit" Type="int" Nullable="false" />
+          <Property Name="IDCPU" Type="int" Nullable="false" />
+          <Property Name="IDVideoCard" Type="int" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="ComputerType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cooler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CPU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Motherboard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PowerUnit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StorageDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="VideoCard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Computer_ComputerType">
+          <End Role="ComputerType" Type="Self.ComputerType" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComputerType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDComputerType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_Cooler">
+          <End Role="Cooler" Type="Self.Cooler" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cooler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDCooler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_CPU">
+          <End Role="CPU" Type="Self.CPU" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CPU">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDCPU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_Motherboard">
+          <End Role="Motherboard" Type="Self.Motherboard" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motherboard">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDMotherboard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_PowerUnit">
+          <End Role="PowerUnit" Type="Self.PowerUnit" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerUnit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDPowerUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_StorageDevice">
+          <End Role="StorageDevice" Type="Self.StorageDevice" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDStorageDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_VideoCard">
+          <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoCard">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDVideoCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TestingBaseModelContainer">
+          <EntitySet Name="Computer" EntityType="Self.Computer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ComputerType" EntityType="Self.ComputerType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cooler" EntityType="Self.Cooler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CPU" EntityType="Self.CPU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Motherboard" EntityType="Self.Motherboard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PowerUnit" EntityType="Self.PowerUnit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorageDevice" EntityType="Self.StorageDevice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VideoCard" EntityType="Self.VideoCard" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Computer_ComputerType" Association="Self.FK_Computer_ComputerType">
+            <End Role="ComputerType" EntitySet="ComputerType" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_Cooler" Association="Self.FK_Computer_Cooler">
+            <End Role="Cooler" EntitySet="Cooler" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_CPU" Association="Self.FK_Computer_CPU">
+            <End Role="CPU" EntitySet="CPU" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_Motherboard" Association="Self.FK_Computer_Motherboard">
+            <End Role="Motherboard" EntitySet="Motherboard" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_PowerUnit" Association="Self.FK_Computer_PowerUnit">
+            <End Role="PowerUnit" EntitySet="PowerUnit" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_StorageDevice" Association="Self.FK_Computer_StorageDevice">
+            <End Role="StorageDevice" EntitySet="StorageDevice" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_VideoCard" Association="Self.FK_Computer_VideoCard">
+            <End Role="VideoCard" EntitySet="VideoCard" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestingBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Computer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDComputerType" Type="Int32" Nullable="false" />
+          <Property Name="IDCooler" Type="Int32" Nullable="false" />
+          <Property Name="IDMotherboard" Type="Int32" Nullable="false" />
+          <Property Name="IDStorageDevice" Type="Int32" Nullable="false" />
+          <Property Name="IDPowerUnit" Type="Int32" Nullable="false" />
+          <Property Name="IDCPU" Type="Int32" Nullable="false" />
+          <Property Name="IDVideoCard" Type="Int32" Nullable="false" />
+          <Property Name="Photo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ComputerType" Relationship="Self.FK_Computer_ComputerType" FromRole="Computer" ToRole="ComputerType" />
+          <NavigationProperty Name="Cooler" Relationship="Self.FK_Computer_Cooler" FromRole="Computer" ToRole="Cooler" />
+          <NavigationProperty Name="CPU" Relationship="Self.FK_Computer_CPU" FromRole="Computer" ToRole="CPU" />
+          <NavigationProperty Name="Motherboard" Relationship="Self.FK_Computer_Motherboard" FromRole="Computer" ToRole="Motherboard" />
+          <NavigationProperty Name="PowerUnit" Relationship="Self.FK_Computer_PowerUnit" FromRole="Computer" ToRole="PowerUnit" />
+          <NavigationProperty Name="StorageDevice" Relationship="Self.FK_Computer_StorageDevice" FromRole="Computer" ToRole="StorageDevice" />
+          <NavigationProperty Name="VideoCard" Relationship="Self.FK_Computer_VideoCard" FromRole="Computer" ToRole="VideoCard" />
+        </EntityType>
+        <EntityType Name="ComputerType">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_Computer_ComputerType" FromRole="ComputerType" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="Cooler">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_Computer_Cooler" FromRole="Cooler" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="CPU">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_Computer_CPU" FromRole="CPU" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="Motherboard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_Computer_Motherboard" FromRole="Motherboard" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="PowerUnit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_Computer_PowerUnit" FromRole="PowerUnit" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="StorageDevice">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_Computer_StorageDevice" FromRole="StorageDevice" ToRole="Computer" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="VideoCard">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Computer" Relationship="Self.FK_Computer_VideoCard" FromRole="VideoCard" ToRole="Computer" />
+        </EntityType>
+        <Association Name="FK_Computer_ComputerType">
+          <End Role="ComputerType" Type="Self.ComputerType" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComputerType">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDComputerType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_Cooler">
+          <End Role="Cooler" Type="Self.Cooler" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cooler">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDCooler" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_CPU">
+          <End Role="CPU" Type="Self.CPU" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CPU">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDCPU" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_Motherboard">
+          <End Role="Motherboard" Type="Self.Motherboard" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motherboard">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDMotherboard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_PowerUnit">
+          <End Role="PowerUnit" Type="Self.PowerUnit" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerUnit">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDPowerUnit" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_StorageDevice">
+          <End Role="StorageDevice" Type="Self.StorageDevice" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StorageDevice">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDStorageDevice" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Computer_VideoCard">
+          <End Role="VideoCard" Type="Self.VideoCard" Multiplicity="1" />
+          <End Role="Computer" Type="Self.Computer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VideoCard">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Computer">
+              <PropertyRef Name="IDVideoCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestingBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Computer" EntityType="Self.Computer" />
+          <EntitySet Name="ComputerType" EntityType="Self.ComputerType" />
+          <EntitySet Name="Cooler" EntityType="Self.Cooler" />
+          <EntitySet Name="CPU" EntityType="Self.CPU" />
+          <EntitySet Name="Motherboard" EntityType="Self.Motherboard" />
+          <EntitySet Name="PowerUnit" EntityType="Self.PowerUnit" />
+          <EntitySet Name="StorageDevice" EntityType="Self.StorageDevice" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="VideoCard" EntityType="Self.VideoCard" />
+          <AssociationSet Name="FK_Computer_ComputerType" Association="Self.FK_Computer_ComputerType">
+            <End Role="ComputerType" EntitySet="ComputerType" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_Cooler" Association="Self.FK_Computer_Cooler">
+            <End Role="Cooler" EntitySet="Cooler" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_CPU" Association="Self.FK_Computer_CPU">
+            <End Role="CPU" EntitySet="CPU" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_Motherboard" Association="Self.FK_Computer_Motherboard">
+            <End Role="Motherboard" EntitySet="Motherboard" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_PowerUnit" Association="Self.FK_Computer_PowerUnit">
+            <End Role="PowerUnit" EntitySet="PowerUnit" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_StorageDevice" Association="Self.FK_Computer_StorageDevice">
+            <End Role="StorageDevice" EntitySet="StorageDevice" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Computer_VideoCard" Association="Self.FK_Computer_VideoCard">
+            <End Role="VideoCard" EntitySet="VideoCard" />
+            <End Role="Computer" EntitySet="Computer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TestingBaseModelContainer" CdmEntityContainer="TestingBaseEntities">
+          <EntitySetMapping Name="Computer">
+            <EntityTypeMapping TypeName="TestingBaseModel.Computer">
+              <MappingFragment StoreEntitySet="Computer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="IDComputerType" ColumnName="IDComputerType" />
+                <ScalarProperty Name="IDCooler" ColumnName="IDCooler" />
+                <ScalarProperty Name="IDMotherboard" ColumnName="IDMotherboard" />
+                <ScalarProperty Name="IDStorageDevice" ColumnName="IDStorageDevice" />
+                <ScalarProperty Name="IDPowerUnit" ColumnName="IDPowerUnit" />
+                <ScalarProperty Name="IDCPU" ColumnName="IDCPU" />
+                <ScalarProperty Name="IDVideoCard" ColumnName="IDVideoCard" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ComputerType">
+            <EntityTypeMapping TypeName="TestingBaseModel.ComputerType">
+              <MappingFragment StoreEntitySet="ComputerType">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cooler">
+            <EntityTypeMapping TypeName="TestingBaseModel.Cooler">
+              <MappingFragment StoreEntitySet="Cooler">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CPU">
+            <EntityTypeMapping TypeName="TestingBaseModel.CPU">
+              <MappingFragment StoreEntitySet="CPU">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Motherboard">
+            <EntityTypeMapping TypeName="TestingBaseModel.Motherboard">
+              <MappingFragment StoreEntitySet="Motherboard">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PowerUnit">
+            <EntityTypeMapping TypeName="TestingBaseModel.PowerUnit">
+              <MappingFragment StoreEntitySet="PowerUnit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorageDevice">
+            <EntityTypeMapping TypeName="TestingBaseModel.StorageDevice">
+              <MappingFragment StoreEntitySet="StorageDevice">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TestingBaseModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VideoCard">
+            <EntityTypeMapping TypeName="TestingBaseModel.VideoCard">
+              <MappingFragment StoreEntitySet="VideoCard">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
