@@ -53,5 +53,10 @@ namespace WpfComputerServiceApp.Views.Pages
             Data.tb.SaveChanges();
             MessageBox.Show("Данные сохранены", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ComputerDataViewPage(new Computer()));
+        }
     }
 }

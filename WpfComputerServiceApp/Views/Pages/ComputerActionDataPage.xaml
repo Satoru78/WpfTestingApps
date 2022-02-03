@@ -9,6 +9,9 @@
       Title="Действия с данными">
 
     <Grid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Button Content="Назад" Name="Back" Click="Back_Click" Width="150" Margin="10"></Button>
+        </StackPanel>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Название компании:"></TextBlock>
             <TextBox Width="250" Text="{Binding Computer.CompanyName}"></TextBox>

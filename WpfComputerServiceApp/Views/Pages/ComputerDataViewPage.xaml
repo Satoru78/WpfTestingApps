@@ -40,6 +40,9 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+        <Grid Name="NoResult" Visibility="Collapsed" Grid.Row="1">
+            <TextBlock Text="Компьютеров нет в наличии" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="50" FontWeight="SemiBold"/>
+        </Grid>
         <Grid Grid.Row="2">
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" VerticalAlignment="Center">
                 <Button Content="Добавить" Width="250" Margin="10,0" Name="AddBtn" Click="AddBtn_Click"></Button>
