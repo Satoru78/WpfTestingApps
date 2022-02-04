@@ -37,6 +37,13 @@
                     <DataGridTextColumn Header="Блок питания" Binding="{Binding PowerUnit.Title}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Процессор" Binding="{Binding CPU.Title}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Видеокарта" Binding="{Binding VideoCard.Title}"></DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Фото">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding GetPhoto}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

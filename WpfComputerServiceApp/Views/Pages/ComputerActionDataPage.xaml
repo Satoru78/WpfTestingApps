@@ -9,10 +9,21 @@
       Title="Действия с данными">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Height="200" Width="200" Name="Img" Source="{Binding Computer.GetPhoto}"></Image>
+            <Button Content="Выбрать" Name="Select" Click="Select_Click"></Button>
+        </StackPanel>
+        
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
             <Button Content="Назад" Name="Back" Click="Back_Click" Width="150" Margin="10"></Button>
         </StackPanel>
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        
+        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Text="Название компании:"></TextBlock>
             <TextBox Width="250" Text="{Binding Computer.CompanyName}"></TextBox>
             

@@ -95,6 +95,7 @@
     <Compile Include="Model\Motherboard.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\PartialComputer.cs" />
     <Compile Include="Model\PowerUnit.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

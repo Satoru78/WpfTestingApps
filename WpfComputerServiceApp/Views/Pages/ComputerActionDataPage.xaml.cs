@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfComputerServiceApp.Model;
 using WpfComputerServiceApp.Context;
+using System.IO;
+using Microsoft.Win32;
 
 namespace WpfComputerServiceApp.Views.Pages
 {
@@ -50,13 +52,26 @@ namespace WpfComputerServiceApp.Views.Pages
             {
                 Data.tb.Computer.Add(Computer);
             }
+            File.Copy(file.FileName, $"computerphoto\\{System.IO.Path.GetFileName(file.FileName).Trim()}", true);
+            Computer.GetPhoto = "\\computerphoto\\" + System.IO.Path.GetFileName(file.FileName);
             Data.tb.SaveChanges();
             MessageBox.Show("Данные сохранены", "Внимание", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+        OpenFileDialog file = new OpenFileDialog();
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new ComputerDataViewPage(new Computer()));
+        }
+
+        private void Select_Click(object sender, RoutedEventArgs e)
+        {
+            file.Filter = "Image (*.jpg;*.jpeg;*.png;) |  *.jpg; *.jpeg; *.png";
+            if (file.ShowDialog() == true)
+            {
+                BitmapImage image = new BitmapImage(new Uri(file.FileName));
+                Img.Source = image;
+            }
         }
     }
 }
